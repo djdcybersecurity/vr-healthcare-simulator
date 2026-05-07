@@ -100,6 +100,7 @@ The visual direction should feel clinical, calm, and safety-focused. The palette
 | Charcoal | `#1F2933` | Primary body text and high-contrast labels |
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF4FF', 'primaryTextColor': '#1F2933', 'primaryBorderColor': '#1B998B', 'lineColor': '#5C677D', 'fontFamily': 'Arial'}}}%%
 flowchart LR
     navy["Clinical Navy<br/>Primary structure"]
     teal["Scrub Teal<br/>Interactive actions"]
@@ -121,12 +122,18 @@ flowchart LR
     class amber amberClass;
     class red redClass;
 
-    classDef navyClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:1px;
-    classDef tealClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:1px;
-    classDef blueClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:1px;
-    classDef greenClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:1px;
-    classDef amberClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:1px;
-    classDef redClass fill:#C44536,color:#FFFFFF,stroke:#7F1D1D,stroke-width:1px;
+    classDef navyClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px;
+    classDef tealClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px;
+    classDef blueClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
+    classDef greenClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px;
+    classDef amberClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef redClass fill:#C44536,color:#FFFFFF,stroke:#7F1D1D,stroke-width:2px;
+
+    linkStyle 0 stroke:#1B998B,stroke-width:3px;
+    linkStyle 1 stroke:#86B7E7,stroke-width:3px;
+    linkStyle 2 stroke:#2E7D32,stroke-width:3px;
+    linkStyle 3 stroke:#F2A541,stroke-width:3px;
+    linkStyle 4 stroke:#C44536,stroke-width:3px;
 ```
 
 Suggested usage:
@@ -141,6 +148,7 @@ Suggested usage:
 The project is a Unity application, so "front end" and "back end" are conceptual layers inside the simulator rather than separate web services. The front end is the VR experience layer the learner sees and touches. The back end is the C# simulation, scenario, validation, and data layer that drives the training logic.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF4FF', 'primaryTextColor': '#1F2933', 'primaryBorderColor': '#1B998B', 'lineColor': '#5C677D', 'secondaryColor': '#F7FBFF', 'tertiaryColor': '#FFFFFF', 'fontFamily': 'Arial'}}}%%
 flowchart TB
     learner["Learner in VR headset"]
     controllers["HTC Vive controllers"]
@@ -182,6 +190,24 @@ flowchart TB
     scenario --> xml
     xml --> models
     models --> scripts
+
+    class learner userClass;
+    class controllers,input inputClass;
+    class scene,room,vanasUI,assets,feedback frontClass;
+    class scripts,scenario,search,rules,report backClass;
+    class xml,models dataClass;
+
+
+    classDef userClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px;
+    classDef inputClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px;
+    classDef frontClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
+    classDef backClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef dataClass fill:#5C677D,color:#FFFFFF,stroke:#374151,stroke-width:2px;
+    classDef successClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px;
+    classDef alertClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef errorClass fill:#C44536,color:#FFFFFF,stroke:#7F1D1D,stroke-width:2px;
+
+    linkStyle default stroke:#5C677D,stroke-width:2px;
 ```
 
 ## Front-End Concepts
@@ -189,6 +215,7 @@ flowchart TB
 In this Unity VR project, the front end is the learner-facing simulation layer. It includes everything that presents the hospital environment and captures user interaction.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF4FF', 'primaryTextColor': '#1F2933', 'primaryBorderColor': '#1B998B', 'lineColor': '#5C677D', 'secondaryColor': '#F7FBFF', 'tertiaryColor': '#FFFFFF', 'fontFamily': 'Arial'}}}%%
 flowchart LR
     subgraph front [VR Front End]
         headset["VR headset camera rig"]
@@ -208,6 +235,21 @@ flowchart LR
     ui --> browser
     objects --> effects
     patient --> effects
+
+    class headset patientClass;
+    class hands inputClass;
+    class ui,cabinet,browser frontClass;
+    class objects actionClass;
+    class patient dataClass;
+    class effects successClass;
+
+    classDef patientClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px;
+    classDef inputClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px;
+    classDef frontClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
+    classDef actionClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef dataClass fill:#5C677D,color:#FFFFFF,stroke:#374151,stroke-width:2px;
+    classDef successClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px;
+    linkStyle default stroke:#5C677D,stroke-width:2px;
 ```
 
 Front-end responsibilities:
@@ -231,6 +273,7 @@ Important front-end script areas:
 In this repository, the back end is the internal Unity logic layer. It loads scenario data, stores runtime state, validates learner choices, and produces a report.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF4FF', 'primaryTextColor': '#1F2933', 'primaryBorderColor': '#1B998B', 'lineColor': '#5C677D', 'secondaryColor': '#F7FBFF', 'tertiaryColor': '#FFFFFF', 'fontFamily': 'Arial'}}}%%
 flowchart TB
     subgraph backend [Simulation Back End]
         importer["ImportXML"]
@@ -253,6 +296,21 @@ flowchart TB
     search --> events
     events --> vanasLoader
     tracker --> report
+
+    class xml dataClass;
+    class importer,store logicClass;
+    class picker,patientLoader,vanasLoader flowClass;
+    class search,events inputClass;
+    class tracker alertClass;
+    class report successClass;
+
+    classDef dataClass fill:#5C677D,color:#FFFFFF,stroke:#374151,stroke-width:2px;
+    classDef logicClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px;
+    classDef flowClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
+    classDef inputClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px;
+    classDef alertClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef successClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px;
+    linkStyle default stroke:#5C677D,stroke-width:2px;
 ```
 
 Back-end responsibilities:
@@ -279,6 +337,7 @@ Important back-end script areas:
 The simulator is data-driven through XML. The `read.xml` file defines patients, medicines, delivery tools, delivery methods, drawers, cabinets, scenarios, and metadata.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'actorBkg': '#EAF4FF', 'actorBorder': '#1B998B', 'actorTextColor': '#12355B', 'activationBkgColor': '#F2A541', 'activationBorderColor': '#B66D00', 'sequenceNumberColor': '#FFFFFF', 'signalColor': '#5C677D', 'signalTextColor': '#1F2933', 'noteBkgColor': '#EAF4FF', 'noteTextColor': '#12355B', 'fontFamily': 'Arial'}}}%%
 sequenceDiagram
     participant XML as read.xml
     participant Importer as ImportXML
@@ -300,6 +359,7 @@ sequenceDiagram
 Core XML model:
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF4FF', 'primaryTextColor': '#1F2933', 'primaryBorderColor': '#1B998B', 'lineColor': '#5C677D', 'fontFamily': 'Arial'}}}%%
 classDiagram
     class MedicalAppData {
         mPatients
@@ -376,6 +436,20 @@ classDiagram
     Scenario --> DeliveryMethod
     Cabinet --> CabinetDrawer
     DeliveryMethod --> DeliveryTool
+
+    classDef rootClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px;
+    classDef clinicalClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
+    classDef medClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px;
+    classDef scenarioClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef storageClass fill:#5C677D,color:#FFFFFF,stroke:#374151,stroke-width:2px;
+    classDef toolClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px;
+
+    class MedicalAppData rootClass
+    class Patient clinicalClass
+    class Medicine medClass
+    class Scenario scenarioClass
+    class Cabinet,CabinetDrawer storageClass
+    class DeliveryMethod,DeliveryTool toolClass
 ```
 
 ## Medication Workflow
@@ -383,6 +457,7 @@ classDiagram
 The main training loop follows a medication administration workflow. The learner must move from scenario selection through patient verification, medicine retrieval, delivery, and disposal.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF4FF', 'primaryTextColor': '#1F2933', 'primaryBorderColor': '#1B998B', 'lineColor': '#5C677D', 'secondaryColor': '#F7FBFF', 'tertiaryColor': '#FFFFFF', 'fontFamily': 'Arial'}}}%%
 flowchart TD
     start["Start scenario"]
     read["Read scenario description"]
@@ -411,11 +486,27 @@ flowchart TD
     inject --> dispose
     dispose --> finish
     finish --> report
+
+    class start,finish successClass;
+    class read,report frontClass;
+    class verify,search,retrieve inputClass;
+    class route alertClass;
+    class oral,injection,choose,inject actionClass;
+    class dispose errorClass;
+
+    classDef successClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px;
+    classDef frontClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
+    classDef inputClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px;
+    classDef alertClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef actionClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px;
+    classDef errorClass fill:#C44536,color:#FFFFFF,stroke:#7F1D1D,stroke-width:2px;
+    linkStyle default stroke:#5C677D,stroke-width:2px;
 ```
 
 Injection-focused logic:
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF4FF', 'primaryTextColor': '#1F2933', 'primaryBorderColor': '#1B998B', 'lineColor': '#5C677D', 'secondaryColor': '#F7FBFF', 'tertiaryColor': '#FFFFFF', 'fontFamily': 'Arial'}}}%%
 flowchart LR
     medicine["Pulled medicine"]
     patient["Patient target"]
@@ -431,6 +522,21 @@ flowchart LR
     needle --> tracker
     method --> tracker
     body --> tracker
+
+    class medicine medClass;
+    class patient patientClass;
+    class syringe,needle toolClass;
+    class method actionClass;
+    class body zoneClass;
+    class tracker successClass;
+
+    classDef medClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px;
+    classDef patientClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
+    classDef toolClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef actionClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px;
+    classDef zoneClass fill:#5C677D,color:#FFFFFF,stroke:#374151,stroke-width:2px;
+    classDef successClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px;
+    linkStyle default stroke:#5C677D,stroke-width:2px;
 ```
 
 ## Validation And Reporting
@@ -438,6 +544,7 @@ flowchart LR
 The `Tracker` class stores the active validation state for each scenario. It is reset when a scenario is selected, then updated by interactions throughout the simulation.
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF4FF', 'primaryTextColor': '#1F2933', 'primaryBorderColor': '#1B998B', 'lineColor': '#5C677D', 'secondaryColor': '#F7FBFF', 'tertiaryColor': '#FFFFFF', 'fontFamily': 'Arial'}}}%%
 flowchart TB
     scenario["Active scenario"]
     targetPatient["Target patient"]
@@ -468,6 +575,25 @@ flowchart TB
     interactions --> amountCheck
     interactions --> locationCheck
     checks --> report
+
+    class scenario actionClass;
+    class targetPatient patientClass;
+    class targetMedicine medClass;
+    class targetTool toolClass;
+    class interactions inputClass;
+    class patientCheck,medicineCheck successClass;
+    class syringeCheck,needleCheck,methodCheck,amountCheck,locationCheck alertClass;
+    class report frontClass;
+
+    classDef actionClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px;
+    classDef patientClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
+    classDef medClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px;
+    classDef toolClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef inputClass fill:#5C677D,color:#FFFFFF,stroke:#374151,stroke-width:2px;
+    classDef successClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px;
+    classDef alertClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef frontClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
+    linkStyle default stroke:#5C677D,stroke-width:2px;
 ```
 
 Current report feedback can include:
@@ -483,6 +609,7 @@ Current report feedback can include:
 ## Repository Structure
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#EAF4FF', 'primaryTextColor': '#1F2933', 'primaryBorderColor': '#1B998B', 'lineColor': '#5C677D', 'secondaryColor': '#F7FBFF', 'tertiaryColor': '#FFFFFF', 'fontFamily': 'Arial'}}}%%
 flowchart TB
     root["vr-healthcare-simulator"]
     assets["Assets"]
@@ -512,6 +639,25 @@ flowchart TB
     skills --> xmlScripts
     skills --> models
     skills --> prefabs
+
+    class root rootClass;
+    class assets,skills folderClass;
+    class scripts,xmlScripts codeClass;
+    class models,prefabs assetClass;
+    class steam,vrtk,browser dependencyClass;
+    class settings,packageManager configClass;
+    class readme docClass;
+    class data dataClass;
+
+    classDef rootClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px;
+    classDef folderClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
+    classDef codeClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px;
+    classDef assetClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
+    classDef dependencyClass fill:#5C677D,color:#FFFFFF,stroke:#374151,stroke-width:2px;
+    classDef configClass fill:#C44536,color:#FFFFFF,stroke:#7F1D1D,stroke-width:2px;
+    classDef docClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px;
+    classDef dataClass fill:#FFFFFF,color:#12355B,stroke:#1B998B,stroke-width:2px;
+    linkStyle default stroke:#5C677D,stroke-width:2px;
 ```
 
 Key paths:
@@ -699,5 +845,4 @@ Original project concept and simulator work by:
 
 - Stefan Bauwens
 - Cindy Ho
-
 
