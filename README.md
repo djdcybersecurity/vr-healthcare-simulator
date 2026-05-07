@@ -437,19 +437,21 @@ classDiagram
     Cabinet --> CabinetDrawer
     DeliveryMethod --> DeliveryTool
 
-    classDef rootClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px;
-    classDef clinicalClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px;
-    classDef medClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px;
-    classDef scenarioClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px;
-    classDef storageClass fill:#5C677D,color:#FFFFFF,stroke:#374151,stroke-width:2px;
-    classDef toolClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px;
+    classDef rootClass fill:#12355B,color:#FFFFFF,stroke:#0B2038,stroke-width:2px
+    classDef clinicalClass fill:#EAF4FF,color:#12355B,stroke:#86B7E7,stroke-width:2px
+    classDef medClass fill:#1B998B,color:#FFFFFF,stroke:#0E5E55,stroke-width:2px
+    classDef scenarioClass fill:#F2A541,color:#1F2933,stroke:#B66D00,stroke-width:2px
+    classDef storageClass fill:#5C677D,color:#FFFFFF,stroke:#374151,stroke-width:2px
+    classDef toolClass fill:#2E7D32,color:#FFFFFF,stroke:#1B5E20,stroke-width:2px
 
     class MedicalAppData rootClass
     class Patient clinicalClass
     class Medicine medClass
     class Scenario scenarioClass
-    class Cabinet,CabinetDrawer storageClass
-    class DeliveryMethod,DeliveryTool toolClass
+    class Cabinet storageClass
+    class CabinetDrawer storageClass
+    class DeliveryMethod toolClass
+    class DeliveryTool toolClass
 ```
 
 ## Medication Workflow
